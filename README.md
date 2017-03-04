@@ -1,4 +1,4 @@
-# sell
+# Using Vue.js to imitate the eleme App
 
 > sell app project
 

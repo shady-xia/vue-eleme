@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <div class="tab border-1px">
         <!-- 使用 router-link 组件来导航. -->
         <!-- 通过传入 `to` 属性指定链接. -->
@@ -13,10 +13,25 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 import header from './components/header/header';
 
+const ERR_OK = 0;
+
 export default {
+    data() {
+        return {
+            seller: {}
+        };
+    },
+    created() {
+        this.$http.get('/api/seller').then((response) => {
+            response = response.body;
+            if (response.error === ERR_OK) {
+                this.seller = response.data;
+            }
+        });
+    },
     components: {
         'v-header': header
     }
